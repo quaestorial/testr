@@ -1,14 +1,15 @@
-%div{:id => "#{dom_id task}"}
-  %p.my-5
+%div{:id => "#{dom_id task}", :class => "grid grid-cols-4 gap-4"}
+  .my-5
     %strong.block.font-medium.mb-1 Description:
     = task.description
-  %p.my-5
+  .my-5
     %strong.block.font-medium.mb-1 Notes:
     = task.notes
-  %p.my-5
+  .my-5
     %strong.block.font-medium.mb-1 Deadline:
     = task.deadline
+	
   - if action_name != "show"
-    = link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
-    = link_to 'Edit this task', edit_task_path(task), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium"
-    %hr.mt-6/
+    = link_to "Show this task", task, class: "rounded-lg my-10 py-3 px-5 bg-gray-100 inline-block font-medium"	
+	
+%hr.mt-3
