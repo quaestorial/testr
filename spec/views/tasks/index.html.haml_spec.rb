@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "tasks/index", type: :view do
   before(:each) do
     assign(:tasks, [
-      Task.create!(),
-      Task.create!()
+      Task.create!(description: "something", deadline: Date.tomorrow),
+      Task.create!(description: "anything", deadline: Date.tomorrow)
     ])
   end
 

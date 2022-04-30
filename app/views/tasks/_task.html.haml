@@ -1,15 +1,16 @@
-%div{:id => "#{dom_id task}", :class => "grid grid-cols-4 gap-4"}
-  .my-5
-    %strong.block.font-medium.mb-1 Description:
-    = task.description
-  .my-5
-    %strong.block.font-medium.mb-1 Notes:
-    = task.notes
-  .my-5
-    %strong.block.font-medium.mb-1 Deadline:
-    = task.deadline
+%div{:id => "#{dom_id task}"}
+	%div{:class => "grid grid-cols-4 gap-4"}
+		.my-5
+			%strong.block.font-medium.mb-1 Description:
+			= task.description
+		.my-5
+			%strong.block.font-medium.mb-1 Notes:
+			= task.notes
+		.my-5
+			%strong.block.font-medium.mb-1 Deadline:
+			= task.deadline
+
+		- if action_name != "show"
+			= link_to "Show this task", task, class: "rounded-lg my-10 py-3 px-5 bg-gray-100 inline-block font-medium"	
 	
-  - if action_name != "show"
-    = link_to "Show this task", task, class: "rounded-lg my-10 py-3 px-5 bg-gray-100 inline-block font-medium"	
-	
-%hr.mt-3
+	%hr.mt-3

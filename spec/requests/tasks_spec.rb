@@ -16,12 +16,16 @@ RSpec.describe "/tasks", type: :request do
   
   # Task. As you add validations to Task, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+  let(:valid_attributes) { 
+    {
+    description: "Anything", 
+    notes: "some notes", 
+    deadline: Date.tomorrow 
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {description: nil, notes: nil, deadline: Date.today}
   }
 
   describe "GET /index" do
@@ -78,7 +82,7 @@ RSpec.describe "/tasks", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post tasks_url, params: { task: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -86,7 +90,11 @@ RSpec.describe "/tasks", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+        description: "Anything", 
+        notes: "some notes", 
+        deadline: Date.tomorrow 
+        }
       }
 
       it "updates the requested task" do
@@ -108,7 +116,7 @@ RSpec.describe "/tasks", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         task = Task.create! valid_attributes
         patch task_url(task), params: { task: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
