@@ -91,8 +91,8 @@ RSpec.describe "/tasks", type: :request do
     context "with valid parameters" do
       let(:new_attributes) {
         {
-        description: "Anything", 
-        notes: "some notes", 
+        description: "Any damn thing", 
+        notes: "notes again", 
         deadline: Date.tomorrow 
         }
       }
@@ -101,7 +101,8 @@ RSpec.describe "/tasks", type: :request do
         task = Task.create! valid_attributes
         patch task_url(task), params: { task: new_attributes }
         task.reload
-        skip("Add assertions for updated state")
+        expect(task.description).to eql "Any damn thing"
+        expect(task.notes).to eql "notes again"
       end
 
       it "redirects to the task" do
